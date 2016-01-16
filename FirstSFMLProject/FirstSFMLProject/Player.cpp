@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Player.h"
-
+#include "Camera.h"
+#include "Minimap.h"
 
 //PUBLIC
 Player::Player()
@@ -43,6 +44,7 @@ void Player::Draw(sf::RenderWindow& window)
 
 void Player::Move(float time)
 {
+
 	m_position += m_direction * time * m_speed;
 	m_sprite.setPosition(m_position);
 
@@ -64,11 +66,13 @@ void Player::Move(float time)
 		if (m_speed >= 0)
 			m_speed -= 0.1;
 	}
+	Camera::GetInstance()->setViewPosition(sf::Vector2f(m_position.x, m_position.y));
+	MiniMap::GetInstance()->setViewPosition(sf::Vector2f(m_position.x, m_position.y));
 }
 
 void Player::WrapAroundScreen()
 {
-	if (m_position.x > 800)
+	/*if (m_position.x > 800)
 		m_position.x = 0;
 	else if (m_position.x < 0)
 		m_position.x = 800;
@@ -76,7 +80,7 @@ void Player::WrapAroundScreen()
 	if (m_position.y > 600)
 		m_position.y = 0;
 	else if (m_position.y < 0)
-		m_position.y = 600;
+		m_position.y = 600;*/
 
 }
 
