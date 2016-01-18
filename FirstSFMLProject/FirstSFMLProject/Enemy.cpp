@@ -63,15 +63,15 @@ void Enemy::Move(float time, sf::Vector2f playerPos)
 
 void Enemy::WrapAroundScreen()
 {
-	if (m_position.x > 800)
-		m_position.x = 0;
-	else if (m_position.x < 0)
-		m_position.x = 800;
+	//if (m_position.x > 800)
+	//	m_position.x = 0;
+	//else if (m_position.x < 0)
+	//	m_position.x = 800;
 
-	if (m_position.y > 600)
-		m_position.y = 0;
-	else if (m_position.y < 0)
-		m_position.y = 600;
+	//if (m_position.y > 600)
+	//	m_position.y = 0;
+	//else if (m_position.y < 0)
+	//	m_position.y = 600;
 
 }
 
