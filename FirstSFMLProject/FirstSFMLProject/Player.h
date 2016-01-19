@@ -10,13 +10,14 @@ public:
 
 	void Update(float time);
 	void Draw(sf::RenderWindow& window);
+	void DrawOnMap(sf::RenderWindow& window);
 	sf::Vector2f GetPosition();
 	//Variables
 
 protected:
 	//Functions
 	void Move(float time);
-	void Rotation(int dir);
+	void Rotation(int dir, float);
 	void WrapAroundScreen();
 	
 

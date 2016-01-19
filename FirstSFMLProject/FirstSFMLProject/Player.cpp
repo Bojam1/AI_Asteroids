@@ -11,7 +11,7 @@ Player::Player()
 		// error...
 	}
 	m_sprite.setTexture(m_texture);
-	m_sprite.setOrigin(40, 35);
+	m_sprite.setOrigin(m_sprite.getTextureRect().width / 2, m_sprite.getTextureRect().height / 2);
 	m_position = sf::Vector2f(0, 0);
 
 	m_speed = 500;
@@ -39,6 +39,19 @@ void Player::Draw(sf::RenderWindow& window)
 	window.draw(m_sprite);
 }
 
+void Player::DrawOnMap(sf::RenderWindow& window)
+{
+	sf::CircleShape circle;
+	circle.setRadius(40);
+	circle.setFillColor(sf::Color::Green);
+	circle.setOutlineColor(sf::Color::White);
+	circle.setOutlineThickness(10);
+	circle.setOrigin(circle.getRadius(), circle.getRadius());
+	circle.setPosition(m_sprite.getPosition());
+	//window.draw(m_sprite);
+	window.draw(circle);
+}
+
 
 //PRIVATE
 
@@ -50,11 +63,11 @@ void Player::Move(float time)
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
-		Rotation(1);
+		Rotation(1, time);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
-		Rotation(-1);
+		Rotation(-1, time);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
@@ -84,9 +97,9 @@ void Player::WrapAroundScreen()
 
 }
 
-void Player::Rotation(int dir)
+void Player::Rotation(int dir, float time)
 {
-	m_rotation += 0.05 * dir;
+	m_rotation += 100 * dir * time;
 	m_direction = sf::Vector2f(cos(toRadians(m_rotation)), sin(toRadians(m_rotation)));
 }
 
