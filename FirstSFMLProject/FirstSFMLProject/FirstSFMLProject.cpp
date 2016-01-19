@@ -30,8 +30,12 @@ int main()
 	sf::Texture m_BGTexture;
 	m_BGTexture.loadFromFile("bg.jpg");
 	sf::Sprite m_BGSprite;
+	sf::Sprite m_BGMapSprite;
 	m_BGSprite.setTexture(m_BGTexture);
 	m_BGSprite.setPosition(0, 0);
+
+	m_BGMapSprite.setTexture(m_BGTexture);
+	m_BGMapSprite.setColor(sf::Color(255, 255, 255, 100));
 	//Enemy enemies[3];
 	//
 	//enemies[1] = Enemy(sf::Vector2f(100, 100), 100);
@@ -154,7 +158,7 @@ int main()
 
 		window.setView(MiniMap::GetInstance()->getStaticView());
 		//p1.Draw(window);
-		window.draw(m_BGSprite);
+		window.draw(m_BGMapSprite);
 		for (int i = 0; i < shapes.size(); i++)
 		{
 			window.draw(shapes[i]);

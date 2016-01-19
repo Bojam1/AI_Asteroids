@@ -21,11 +21,11 @@ MiniMap* MiniMap::GetInstance()
 void MiniMap::Init(int w, int h)
 {
 
-	view = sf::View(sf::Vector2f(w/2, h / 2), sf::Vector2f(w * 2, h * 2)); //map that centres on player
+	//view = sf::View(sf::Vector2f(w/2, h / 2), sf::Vector2f(w * 2, h * 2)); //map that centres on player
 	staticView = sf::View(sf::FloatRect(0, 0, w*3, h*3));
 
-	view.setViewport(sf::FloatRect(0.75f, 0, 0.25f, 0.25f));
-	staticView.setViewport(sf::FloatRect(0.68f, 0.025f, .30f, 0.2250f));
+	//view.setViewport(sf::FloatRect(0.75f, 0, 0.25f, 0.25f));
+	staticView.setViewport(sf::FloatRect(0.67f, 0.04f, .30f, 0.2250f));
 
 }
 sf::View MiniMap::getView()
