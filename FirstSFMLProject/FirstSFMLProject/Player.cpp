@@ -146,7 +146,7 @@ void Player::WrapAroundScreen()
 void Player::Rotation(int dir, float time)
 {
 	m_rotation += 200 * dir * time;
-	cout << "rotation: " << m_rotation << endl;
+	//cout << "rotation: " << m_rotation << endl;
 	if (m_rotation >= 360 || m_rotation <= -360)
 	{
 		m_rotation = 0;
