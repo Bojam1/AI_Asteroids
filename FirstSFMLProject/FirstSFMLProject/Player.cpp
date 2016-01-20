@@ -14,10 +14,10 @@ Player::Player()
 	m_sprite.setOrigin(m_sprite.getTextureRect().width / 2, m_sprite.getTextureRect().height / 2);
 	m_position = sf::Vector2f(0, 0);
 
-	m_speed = 500;
+	m_speed = 350;
 	m_rotation = 0;
 	m_direction = sf::Vector2f(cos(toRadians(m_rotation)), sin(toRadians(m_rotation)));
-	m_position = sf::Vector2f(300, 200);
+	m_position = sf::Vector2f((800 * 3) / 2, (600 * 3) / 2);
 }
 
 Player::Player(sf::Vector2f pos, sf::Vector2f dir, sf::FloatRect bounds)
@@ -71,13 +71,17 @@ void Player::Move(float time)
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
-		if (m_speed <= 1000)
-			m_speed += 0.1;
+		if (m_speed <= 500)
+			m_speed += 10;
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	//{
+	//	if (m_speed >= -50)
+	//		m_speed -= 5;
+	//}
+	else if (m_speed > 50)
 	{
-		if (m_speed >= 0)
-			m_speed -= 0.1;
+		m_speed -= 5;
 	}
 	Camera::GetInstance()->setViewPosition(sf::Vector2f(m_position.x, m_position.y));
 	MiniMap::GetInstance()->setViewPosition(sf::Vector2f(m_position.x, m_position.y));
