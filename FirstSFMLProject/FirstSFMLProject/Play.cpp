@@ -10,8 +10,8 @@ Play::Play(int SCREEN_WIDTH, int SCREEN_HEIGHT)
 
 	player = new Player();
 	
-	//Enemy enemies[3];
-
+	//Enemy enemies[3];S
+	asteroid = new Asteroids(player->GetPosition());
 
 	enemies[1] = Enemy(sf::Vector2f(100, 100), 100);
 	enemies[2] = Enemy(sf::Vector2f(10, 10), 50);
@@ -39,6 +39,7 @@ void Play::Update(float time, sf::Time animationTime){
 	{
 		enemies[i].Update(time, player->GetPosition());
 	}
+	asteroid->Update(time);
 }
 
 void Play::Draw(sf::RenderWindow& window){
@@ -50,6 +51,7 @@ void Play::Draw(sf::RenderWindow& window){
 	{
 		enemies[i].Draw(window);
 	}	
+	asteroid->Draw(window);
 	//MiniMap
 	window.setView(MiniMap::GetInstance()->getView());
 	window.draw(background);

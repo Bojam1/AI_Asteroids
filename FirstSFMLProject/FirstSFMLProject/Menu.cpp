@@ -3,7 +3,7 @@
 
 Menu::Menu(int SCREEN_WIDTH, int SCREEN_HEIGHT)
 {
-	if (!texture.loadFromFile("Assets/menu.png"))
+	if (!texture.loadFromFile("MenuBg.jpg"))
 	{
 
 	}

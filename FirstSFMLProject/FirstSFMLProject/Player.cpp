@@ -40,8 +40,6 @@ void Player::Draw(sf::RenderWindow& window)
 }
 
 
-//PRIVATE
-
 void Player::Move(float time)
 {
 

@@ -1,17 +1,19 @@
-#ifndef _PLAY_H_
-#define _PLAY_H_
+#ifndef PLAY_H
+#define PLAY_H
 
 #include <iostream>
 #include "StateController.h"
 #include "Player.h"
 #include "Enemy.h"
 #include "Camera.h"
+#include "Asteroids.h"
 #include "MiniMap.h"
 
 
 class Play{
 private:
 	Player* player;
+	Asteroids* asteroid;
 	sf::Texture backgroundTexture;
 	sf::Sprite background;
 
