@@ -6,12 +6,13 @@
 //#include "Enemy.h"
 #include "Camera.h"
 #include "Minimap.h"
-
+#include "Bullet.h"
 #include <iostream>
 #include <vector>
 #include "Boid.h"
 #include "Pvector.h"
 #include "Flock.h"
+#include "BulletManager.h"
 #include "SFML/Window.hpp"
 #include "SFML/Graphics.hpp"
 #include <string>
@@ -27,6 +28,7 @@ int main()
 	string action = "flock";
 
 	Player p1;
+	Bullet b1;
 	sf::Texture m_BGTexture;
 	m_BGTexture.loadFromFile("bg.jpg");
 	sf::Sprite m_BGSprite;
@@ -60,7 +62,7 @@ int main()
 	Flock flock;
 	vector<sf::CircleShape> shapes;
 
-	for (int i = 0; i < 50; i++) //Number of boids is hardcoded for testing pusposes.
+	for (int i = 0; i < 30; i++) //Number of boids is hardcoded for testing pusposes.
 	{
 		//Boid b(rand() % window_width, rand() % window_height); //Starts the boid with a random position in the window.
 		Boid b(window_width / 3, window_height / 3); //Starts all boids in the center of the screen
@@ -104,12 +106,16 @@ int main()
 			if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::Escape))
 				window.close();
 
-			if ((Event.type == sf::Event::KeyPressed && Event.key.code == sf::Keyboard::Space))
+			if ((Event.type == sf::Event::KeyPressed && Event.key.code == sf::Keyboard::S))
 			if (action == "flock")
 				action = "swarm";
 			else
 				action = "flock";
 
+			if ((Event.type == sf::Event::KeyPressed && Event.key.code == sf::Keyboard::Space))
+			{
+				p1.Shoot();
+			}
 		}
 
 		time = m_clock.getElapsedTime();
@@ -118,6 +124,8 @@ int main()
 
 		p1.Update(t);
 
+		BulletManager::GetInstance()->Update(t);
+
 
 		window.clear(); //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>CLEAR WINDOW
 
@@ -125,9 +133,11 @@ int main()
 		window.setView(Camera::GetInstance()->getView());
 		//draw frame items
 		window.draw(m_BGSprite);
+
+		BulletManager::GetInstance()->Draw(window);
 		p1.Draw(window);
 
-
+		
 	
 		//Draws all of the Boids out, and applies functions that are needed to update.
 		for (int i = 0; i < shapes.size(); i++)

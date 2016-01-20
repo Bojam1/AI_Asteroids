@@ -84,6 +84,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Boid.h" />
+    <ClInclude Include="Bullet.h" />
+    <ClInclude Include="BulletManager.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Flock.h" />
@@ -95,6 +97,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Boid.cpp" />
+    <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="BulletManager.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="FirstSFMLProject.cpp" />
