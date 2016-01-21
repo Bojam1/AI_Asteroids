@@ -38,7 +38,7 @@ Pvector Boid::Separation(vector<Boid> boids)
 	// algorithm
 	
 	// Distance of field of vision for separation between boids
-	float desiredseparation = 5;
+	float desiredseparation = 15;
 
 	Pvector steer(0, 0);
 	int count = 0;

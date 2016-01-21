@@ -20,7 +20,7 @@ Bullet::Bullet(sf::Vector2f playerPos, sf::Texture* bulletImage, float rotation)
 	bulletSprite.setPosition(playerPos);
 	m_position = playerPos;
 	bulletSprite.setOrigin(bulletSprite.getGlobalBounds().width / 2, bulletSprite.getGlobalBounds().height / 2);
-	bulletSprite.setScale(0.25, 0.25);
+	bulletSprite.setScale(0.3, 0.3);
 }
 
 //! Draw the bullet holes
@@ -44,6 +44,7 @@ void Bullet::Move(float time)
 {
 	//cout << "rotationBullet: " << m_rotation << endl;
 	m_position += sf::Vector2f(cos(toRadians(m_rotation)), sin(toRadians(m_rotation))) * time * m_speed;
+	//m_position += Player::GetInstance()->GetDirection() * time * Player::GetInstance()->GetSpeed();
 	//cout << "bullet pos: " << "(" << m_position.x << "," << m_position.y << ")" << endl;
 	bulletSprite.setPosition(m_position);
 }

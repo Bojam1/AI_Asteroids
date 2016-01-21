@@ -32,11 +32,15 @@ Player* Player::GetInstance()
 //PUBLIC
 Player::Player()
 {
-	if (!m_texture.loadFromFile("player.png"))
-	{
-		// error...
-	}
-	m_sprite.setTexture(m_texture);
+	//if (!m_texture.loadFromFile("player.png"))
+	//{
+	//	// error...
+	//}
+	if (!m_textureStandby.loadFromFile("player.png")){}
+	if (!m_textureForward.loadFromFile("player1.png")){}
+	if (!m_textureLeft.loadFromFile("player3.png")){}
+	if (!m_textureRight.loadFromFile("player2.png")){}
+	m_sprite.setTexture(m_textureStandby);
 	m_sprite.setOrigin(m_sprite.getTextureRect().width / 2, m_sprite.getTextureRect().height / 2);
 	m_position = sf::Vector2f(0, 0);
 
@@ -88,17 +92,25 @@ void Player::Move(float time)
 {
 	
 	//m_position += m_direction * time * m_speed;
+	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	{
+		m_sprite.setTexture(m_textureStandby);
+	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
+		m_sprite.setTexture(m_textureLeft);
 		Rotation(1, time);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
+		m_sprite.setTexture(m_textureRight);
 		Rotation(-1, time);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
+		m_sprite.setTexture(m_textureForward);
+
 		/*m_rotationDif = m_prevRot - m_rotation;
 		if (m_rotationDif < 0)
 			m_rotationDif *= -1;
@@ -172,4 +184,14 @@ float Player::GetRotation()
 void Player::Shoot()
 {
 	BulletManager::GetInstance()->AddBullet(m_position, m_rotation);
+}
+
+sf::Vector2f Player::GetDirection()
+{
+	return m_direction;
+}
+
+float Player::GetSpeed()
+{
+	return m_speed;
 }

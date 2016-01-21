@@ -19,6 +19,8 @@ public:
 	void DrawOnMap(sf::RenderWindow& window);
 	sf::Vector2f GetPosition();
 	float GetRotation();
+	sf::Vector2f GetDirection();
+	float GetSpeed();
 	void Shoot();
 	//Variables
 
@@ -44,7 +46,10 @@ protected:
 	sf::Vector2f m_prevDir;
 	sf::Vector2f bulletDir;
 	sf::Sprite m_sprite;
-	sf::Texture m_texture;
+	sf::Texture m_textureStandby;
+	sf::Texture m_textureForward;
+	sf::Texture m_textureLeft;
+	sf::Texture m_textureRight;
 	sf::FloatRect m_bounds;
 
 private:
