@@ -1,24 +1,24 @@
-#ifndef ASTEROIDS_H
-#define ASTEROIDS_H
+#ifndef POWERUP_H
+#define POWERUP_H
 
 #include "SFML\Graphics.hpp"
 #include "Pvector.h"
 #include "Player.h"
 #include <list>
 
-class Asteroids
+class PowerUp
 {
 public:
-	Asteroids(sf::Vector2f pos);
-	~Asteroids()
+	PowerUp();
+	~PowerUp()
 	{
-		cout << "Deleteing Asteroid" << endl;
+		cout << "Deleteing PowerUp" << endl;
 	}
 	bool IsColliding(Player* p);
 	bool IsAlive();
 	void Update(float time);
 	void Draw(sf::RenderWindow& window);
-	sf::Vector2f Normalise(sf::Vector2f vec);
+	sf::Sprite GetSprite();
 private:
 	float m_speed = 50;
 	sf::Sprite sprite;

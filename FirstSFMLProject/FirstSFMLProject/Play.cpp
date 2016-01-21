@@ -23,7 +23,8 @@ Play::Play(int SCREEN_WIDTH, int SCREEN_HEIGHT)
 
 	Camera::GetInstance()->Init(SCREEN_WIDTH, SCREEN_HEIGHT);
 	MiniMap::GetInstance()->Init(SCREEN_WIDTH, SCREEN_HEIGHT);
-
+	AsteroidManager::GetInstance()->Init(player->GetPosition());
+	PowerUpManager::GetInstance()->Init();
 }
 
 void Play::Init()
@@ -40,6 +41,8 @@ void Play::Update(float time, sf::Time animationTime){
 		enemies[i].Update(time, player->GetPosition());
 	}
 	asteroid->Update(time);
+	AsteroidManager::GetInstance()->Update(time, player);
+	PowerUpManager::GetInstance()->Update(time, player);
 }
 
 void Play::Draw(sf::RenderWindow& window){
@@ -51,7 +54,9 @@ void Play::Draw(sf::RenderWindow& window){
 	{
 		enemies[i].Draw(window);
 	}	
-	asteroid->Draw(window);
+	//asteroid->Draw(window);
+	AsteroidManager::GetInstance()->Draw(window);
+	PowerUpManager::GetInstance()->Draw(window);
 	//MiniMap
 	window.setView(MiniMap::GetInstance()->getView());
 	window.draw(background);
@@ -60,6 +65,7 @@ void Play::Draw(sf::RenderWindow& window){
 		enemies[i].Draw(window);
 	}	
 	player->Draw(window);
+	AsteroidManager::GetInstance()->Draw(window);
 	window.setView(MiniMap::GetInstance()->getStaticView());
 	//reset view
 	window.setView(Camera::GetInstance()->getView());

@@ -8,6 +8,9 @@
 #include "Camera.h"
 #include "Asteroids.h"
 #include "MiniMap.h"
+#include "AsteroidManager.h"
+#include "PowerUpManager.h"
+#include "PowerUp.h"
 
 
 class Play{

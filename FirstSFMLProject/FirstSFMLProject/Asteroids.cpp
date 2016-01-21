@@ -13,12 +13,19 @@ Asteroids::Asteroids(sf::Vector2f playerPos){
 	dir = Normalise(dir);
 	m_dir = dir;
 
-	srand(time(NULL));
 	m_position = sf::Vector2f((rand() % 800 + 1), rand() % 600 + 1);
 	
 	sprite.setPosition(m_position);
 	
 
+}
+bool Asteroids::IsColliding(Player * p)
+{
+	if (sprite.getGlobalBounds().intersects(p->GetSprite().getGlobalBounds()))
+	{
+	//	cout << "collision" << endl;
+	}
+	return false;
 }
 bool Asteroids::IsAlive(){
 	return isAlive;

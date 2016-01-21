@@ -20,17 +20,24 @@ AsteroidManager* AsteroidManager::GetInstance()
 		return instance;
 	}
 }
-void AsteroidManager::Init(int w, int h)
+void AsteroidManager::Init(sf::Vector2f playerPos)
 {
-
+	for (int i = 0; i < max_Asteroids; i++)
+	{
+		asteroids->push_back(new Asteroids(playerPos));
+	}
 
 }
-void AsteroidManager::Update(float time)
+void AsteroidManager::Update(float time, Player* p)
 {
 	//cout << p->GetPosition().x << ":" << p->GetPosition().y << endl;
 	for each(Asteroids* asteroid in *asteroids)
 	{
 		asteroid->Update(time);
+	}
+	for each(Asteroids* asteroid in *asteroids)
+	{
+		asteroid->IsColliding(p);
 	}
 }
 void AsteroidManager::AddAsteroid(sf::Vector2f playerPos)

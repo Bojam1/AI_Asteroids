@@ -1,6 +1,8 @@
 #ifndef ENEMY 
 #define ENEMY
 
+#include "SFML\Graphics.hpp"
+
 class Enemy
 {
 public:

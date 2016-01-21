@@ -11,6 +11,8 @@ public:
 	void Update(float time);
 	void Draw(sf::RenderWindow& window);
 	sf::Vector2f GetPosition();
+	sf::Sprite GetSprite();
+	void PowerUpCollected();
 	//Variables
 
 protected:
@@ -21,8 +23,10 @@ protected:
 	
 
 	//Variables
+	bool powerUpCollected;
 	int m_width;
 	int m_height;
+	int count;
 	float m_speed;
 	float m_rotation;
 	float toRadians(float degrees);

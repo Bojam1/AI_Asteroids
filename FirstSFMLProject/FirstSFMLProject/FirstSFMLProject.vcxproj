@@ -91,6 +91,8 @@
     <ClInclude Include="Minimap.h" />
     <ClInclude Include="Play.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PowerUp.h" />
+    <ClInclude Include="PowerUpManager.h" />
     <ClInclude Include="PVector.h" />
     <ClInclude Include="StateController.h" />
     <ClInclude Include="stdafx.h" />
@@ -106,6 +108,8 @@
     <ClCompile Include="Minimap.cpp" />
     <ClCompile Include="Play.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PowerUp.cpp" />
+    <ClCompile Include="PowerUpManager.cpp" />
     <ClCompile Include="PVector.cpp" />
     <ClCompile Include="StateController.cpp" />
     <ClCompile Include="stdafx.cpp">

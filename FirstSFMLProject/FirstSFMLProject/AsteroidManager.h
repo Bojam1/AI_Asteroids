@@ -21,8 +21,8 @@ public:
 
 	static AsteroidManager* GetInstance();
 
-	void Init(int w, int h);
-	void Update(float time);
+	void Init(sf::Vector2f playerPos);
+	void Update(float time, Player* p);
 	void Draw(sf::RenderWindow& window);
 	void AddAsteroid(sf::Vector2f playerPos);
 
@@ -36,7 +36,7 @@ private:
 	}
 	sf::Texture texture;
 	list<Asteroids*>* asteroids;
-	int max_Obstacles = 10;
+	int max_Asteroids = 10;
 
 };
 

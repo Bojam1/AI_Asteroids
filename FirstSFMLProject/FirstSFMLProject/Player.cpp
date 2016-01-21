@@ -13,7 +13,7 @@ Player::Player()
 	m_sprite.setTexture(m_texture);
 	m_sprite.setOrigin(40, 35);
 	m_position = sf::Vector2f(0, 0);
-
+	count = 0;
 	m_speed = 500;
 	m_rotation = 0;
 	m_direction = sf::Vector2f(cos(toRadians(m_rotation)), sin(toRadians(m_rotation)));
@@ -42,7 +42,20 @@ void Player::Draw(sf::RenderWindow& window)
 
 void Player::Move(float time)
 {
-
+	if (powerUpCollected)
+	{
+		//count = 0;
+		m_speed = 1050;
+		count++;
+		cout << count << endl;
+			if(count == 360)
+			{
+				m_speed = 500;
+				count = 0;
+				powerUpCollected = false;
+				cout << "power lost" << endl;
+			}
+	}
 	m_position += m_direction * time * m_speed;
 	m_sprite.setPosition(m_position);
 
@@ -96,4 +109,14 @@ float Player::toRadians(float degrees)
 sf::Vector2f Player::GetPosition()
 {
 	return m_position;
+}
+sf::Sprite Player::GetSprite()
+{
+	return m_sprite;
+}
+
+void Player::PowerUpCollected()
+{
+	powerUpCollected = true;
+	cout << "powerUpcollected" << endl;
 }
