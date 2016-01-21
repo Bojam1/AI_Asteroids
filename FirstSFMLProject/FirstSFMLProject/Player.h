@@ -1,5 +1,5 @@
-#ifndef PLAYER 
-#define PLAYER
+#ifndef PLAYER_H
+#define PLAYER_H
 
 class Player
 {
@@ -18,10 +18,15 @@ public:
 	void Draw(sf::RenderWindow& window);
 	void DrawOnMap(sf::RenderWindow& window);
 	sf::Vector2f GetPosition();
+<<<<<<< HEAD
 	float GetRotation();
 	sf::Vector2f GetDirection();
 	float GetSpeed();
 	void Shoot();
+=======
+	sf::Sprite GetSprite();
+	void PowerUpCollected();
+>>>>>>> refs/remotes/origin/Jamies-Branch
 	//Variables
 
 protected:
@@ -34,8 +39,10 @@ protected:
 	static bool instanceFlag;
 	static Player* instance;
 	//Variables
+	bool powerUpCollected;
 	int m_width;
 	int m_height;
+	int count;
 	float m_speed;
 	float m_rotation;
 	float m_prevRot;

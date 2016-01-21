@@ -83,6 +83,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <ClInclude Include="Boid.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="BulletManager.h" />
@@ -90,24 +91,48 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Factory.h" />
     <ClInclude Include="Flock.h" />
+=======
+    <ClInclude Include="AsteroidManager.h" />
+    <ClInclude Include="Asteroids.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Menu.h" />
+>>>>>>> refs/remotes/origin/Jamies-Branch
     <ClInclude Include="Minimap.h" />
+    <ClInclude Include="Play.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PowerUp.h" />
+    <ClInclude Include="PowerUpManager.h" />
     <ClInclude Include="PVector.h" />
+    <ClInclude Include="StateController.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <ClCompile Include="Boid.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="BulletManager.cpp" />
+=======
+    <ClCompile Include="AsteroidManager.cpp" />
+    <ClCompile Include="Asteroids.cpp" />
+>>>>>>> refs/remotes/origin/Jamies-Branch
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Factory.cpp" />
     <ClCompile Include="FirstSFMLProject.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="Flock.cpp" />
+=======
+    <ClCompile Include="Menu.cpp" />
+>>>>>>> refs/remotes/origin/Jamies-Branch
     <ClCompile Include="Minimap.cpp" />
+    <ClCompile Include="Play.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PowerUp.cpp" />
+    <ClCompile Include="PowerUpManager.cpp" />
     <ClCompile Include="PVector.cpp" />
+    <ClCompile Include="StateController.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

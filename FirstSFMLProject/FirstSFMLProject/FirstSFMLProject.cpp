@@ -6,6 +6,7 @@
 //#include "Enemy.h"
 #include "Camera.h"
 #include "Minimap.h"
+<<<<<<< HEAD
 #include "Bullet.h"
 #include <iostream>
 #include <vector>
@@ -17,6 +18,11 @@
 #include "SFML/Graphics.hpp"
 #include <string>
 using namespace std;
+=======
+#include "StateController.h"
+#include "Menu.h"
+#include "Play.h"
+>>>>>>> refs/remotes/origin/Jamies-Branch
 
 ////////////////////////////////////////////////////////////
 ///Entrypoint of application 
@@ -24,6 +30,7 @@ using namespace std;
 
 int main()
 {
+<<<<<<< HEAD
 	float boidsSize = 8;
 	string action = "flock";
 
@@ -60,6 +67,18 @@ int main()
 	//load a font
 	sf::Font font;
 	font.loadFromFile("C:\\Windows\\Fonts\\GARA.TTF");
+=======
+	int SCREEN_WIDTH = 800, SCREEN_HEIGHT = 600;
+	Menu* menu;
+	Play* play;
+
+	Player p1;
+	Enemy enemies[3];
+	
+
+	enemies[1] = Enemy(sf::Vector2f(100, 100), 100);
+	enemies[2] = Enemy(sf::Vector2f(10, 10), 50);
+>>>>>>> refs/remotes/origin/Jamies-Branch
 
 	//Create flock, vector of shapes, and initialize boids
 	Flock flock;
@@ -86,6 +105,21 @@ int main()
 		
 	}
 
+<<<<<<< HEAD
+=======
+	// Create the main window 
+	sf::RenderWindow window(sf::VideoMode(800, 600, 32), "SFML First Program");
+	/*Initialsie the game modes*/
+
+	menu = new Menu(SCREEN_WIDTH, SCREEN_HEIGHT);
+	play = new Play(SCREEN_WIDTH, SCREEN_HEIGHT);
+
+	Camera::GetInstance()->Init(800, 600);
+	MiniMap::GetInstance()->Init(800, 600);
+	//load a font
+	sf::Font font;
+	font.loadFromFile("C:\\Windows\\Fonts\\GARA.TTF");
+>>>>>>> refs/remotes/origin/Jamies-Branch
 
 	////create a circle
 	//sf::CircleShape circle(50);
@@ -126,6 +160,7 @@ int main()
 		float t = time.asSeconds();
 		m_clock.restart();
 
+<<<<<<< HEAD
 		p1.Update(t);
 
 		BulletManager::GetInstance()->Update(t);
@@ -165,6 +200,49 @@ int main()
 				shapes[i].setOutlineColor(sf::Color::Red);
 			}
 		}
+=======
+		//updates
+		switch (StateController::GetInstance()->getState())
+		{
+		case StateController::MENU:
+			menu->Update(t);
+			break;
+		case StateController::PLAY:
+			play->Update(t, time);
+			break;
+		case StateController::CREDITS:
+			break;
+		case StateController::PAUSE:
+			break;
+		case StateController::SPLASH:
+			break;
+		case StateController::SCORESCREEN:
+			break;
+		}//end switch
+
+
+		window.clear();
+		
+		//draw
+		switch (StateController::GetInstance()->getState())
+		{
+		case StateController::MENU:
+			menu->Draw(window);
+			break;
+		case StateController::PLAY:
+			play->Draw(window);
+			break;
+		case StateController::CREDITS:
+			break;
+		case StateController::PAUSE:
+			break;
+		case StateController::SPLASH:
+			break;
+		case StateController::SCORESCREEN:
+			break;
+		}//end switch
+	
+>>>>>>> refs/remotes/origin/Jamies-Branch
 
 		//MiniMap>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 		//window.setView(MiniMap::GetInstance()->getView());

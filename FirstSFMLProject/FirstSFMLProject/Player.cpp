@@ -43,8 +43,13 @@ Player::Player()
 	m_sprite.setTexture(m_textureStandby);
 	m_sprite.setOrigin(m_sprite.getTextureRect().width / 2, m_sprite.getTextureRect().height / 2);
 	m_position = sf::Vector2f(0, 0);
+<<<<<<< HEAD
 
 	m_speed = 0;
+=======
+	count = 0;
+	m_speed = 500;
+>>>>>>> refs/remotes/origin/Jamies-Branch
 	m_rotation = 0;
 	m_prevRot = 0;
 	m_rotationDif = 0;
@@ -86,16 +91,33 @@ void Player::DrawOnMap(sf::RenderWindow& window)
 }
 
 
-//PRIVATE
-
 void Player::Move(float time)
 {
+<<<<<<< HEAD
 	
 	//m_position += m_direction * time * m_speed;
 	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
 		m_sprite.setTexture(m_textureStandby);
 	}
+=======
+	if (powerUpCollected)
+	{
+		//count = 0;
+		m_speed = 1050;
+		count++;
+		cout << count << endl;
+			if(count == 360)
+			{
+				m_speed = 500;
+				count = 0;
+				powerUpCollected = false;
+				cout << "power lost" << endl;
+			}
+	}
+	m_position += m_direction * time * m_speed;
+	m_sprite.setPosition(m_position);
+>>>>>>> refs/remotes/origin/Jamies-Branch
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
@@ -175,6 +197,7 @@ sf::Vector2f Player::GetPosition()
 {
 	return m_position;
 }
+<<<<<<< HEAD
 
 float Player::GetRotation()
 {
@@ -195,3 +218,15 @@ float Player::GetSpeed()
 {
 	return m_speed;
 }
+=======
+sf::Sprite Player::GetSprite()
+{
+	return m_sprite;
+}
+
+void Player::PowerUpCollected()
+{
+	powerUpCollected = true;
+	cout << "powerUpcollected" << endl;
+}
+>>>>>>> refs/remotes/origin/Jamies-Branch

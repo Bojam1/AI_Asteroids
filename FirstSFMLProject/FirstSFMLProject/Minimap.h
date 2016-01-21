@@ -1,5 +1,5 @@
-#ifndef _MINIMAP_H_
-#define _MINIMAP_H_
+#ifndef MINIMAP_H
+#define MINIMAP_H
 
 #include "SFML\Graphics.hpp"
 
