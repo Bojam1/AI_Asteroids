@@ -239,21 +239,78 @@ float Boid::angle(Pvector v)
 	return angle;
 }
 
-void Boid::swarm(vector <Boid> v)
+void Boid::swarm(vector <Boid> v, sf::Vector2f playerPos)
 {
-/*		Lenard-Jones Potential function
-			Vector R = me.position - you.position
-			Real D = R.magnitude()
-			Real U = -A / pow(D, N) + B / pow(D, M)
-			R.normalise()
-			force = force + R*U
-*/
+
 	Pvector	R;
 	Pvector sum(0, 0);
 
-	// Your code here..
+	int count = 0;
+
+	for (int i = 0; i < v.size(); i++)		//cycling through every boid 
+	{
+		tuple<bool, Pvector> LJP = CalculateLJP(v[i], playerPos);
+		if (std::get<0>(LJP))
+		{
+			sum.addVector(std::get<1>(LJP));
+			count++;
+		}
+	}
+
+	if (count > 0)
+		sum.divScalar(count);
 
 	applyForce(sum);
 	update();
 	borders();
+}
+
+tuple<bool, Pvector> Boid::CalculateLJP(Boid b, sf::Vector2f playerPos)
+{
+	Pvector	R;
+	Pvector p(playerPos.x, playerPos.y);
+
+	float neighbordist = 500;
+	float neighbordistPlayer = 500;
+	float A = 100; //force of attraction
+	float B = 5000; //force of separation
+	float N = 1; //linear atenuation
+	float M = 2; //atenuation 
+
+	float dist = location.distance(b.location);
+	float dist2 = location.distance(p);
+
+	/*		Lenard-Jones Potential function
+	Vector R = me.position - you.position
+	Real D = R.magnitude()
+	Real U = -A / pow(D, N) + B / pow(D, M)
+	R.normalise()
+	force = force + R*U
+	*/
+	if ((dist2 > 0) && (dist2 < neighbordistPlayer))
+	{
+		R = location;
+		R.subVector(p);
+
+		float D = R.magnitude();
+		float U = -A / pow(D, N) + B / pow(D, M);
+		R.normalize();
+
+		R.mulScalar(U);
+		return tuple<bool, Pvector>(true, R);
+	}
+	else if ((dist > 0) && (dist < neighbordist)) // 0 < d < 500
+	{
+		R = location;
+		R.subVector(b.location);
+
+		float D = R.magnitude();
+		float U = -A / pow(D, N) + B / pow(D, M);
+		R.normalize();
+
+		R.mulScalar(U);
+		return tuple<bool, Pvector>(true, R);
+	}
+	else
+		return tuple<bool, Pvector>(false, R);
 }

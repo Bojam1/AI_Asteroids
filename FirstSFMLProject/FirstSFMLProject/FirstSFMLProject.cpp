@@ -65,7 +65,7 @@ int main()
 	Flock flock;
 	vector<sf::CircleShape> shapes;
 
-	for (int i = 0; i < 50; i++) //Number of boids is hardcoded for testing pusposes.
+	for (int i = 0; i < 25; i++) //Number of boids is hardcoded for testing pusposes.
 	{
 		//Boid b(rand() % window_width, rand() % window_height); //Starts the boid with a random position in the window.
 		Boid b((window_width * 3) / 2, (window_height * 3) / 2 -150); //Starts all boids in the center of the screen
@@ -192,7 +192,7 @@ int main()
 		if (action == "flock")
 			flock.flocking();
 		else
-			flock.swarming();
+			flock.swarming(p1.GetPosition());
 
 		// Finally, display rendered frame on screen 
 		window.display(); //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>DRAW WINDOW

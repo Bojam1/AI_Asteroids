@@ -79,7 +79,8 @@ Destructors are commented out for now. g++ throws errors if they are included.
 	void flock(vector <Boid> v);
 	void borders();
 	float angle(Pvector v);
-	void swarm(vector <Boid> v);
+	void swarm(vector <Boid> v, sf::Vector2f playerPos);
+	tuple<bool, Pvector> Boid::CalculateLJP(Boid b, sf::Vector2f playerPos);
 };
 
 #endif

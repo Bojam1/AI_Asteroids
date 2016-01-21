@@ -88,6 +88,7 @@
     <ClInclude Include="BulletManager.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Factory.h" />
     <ClInclude Include="Flock.h" />
     <ClInclude Include="Minimap.h" />
     <ClInclude Include="Player.h" />
@@ -101,6 +102,7 @@
     <ClCompile Include="BulletManager.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="Factory.cpp" />
     <ClCompile Include="FirstSFMLProject.cpp" />
     <ClCompile Include="Flock.cpp" />
     <ClCompile Include="Minimap.cpp" />

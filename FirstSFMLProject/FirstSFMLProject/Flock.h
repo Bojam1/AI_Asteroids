@@ -37,7 +37,7 @@ errors.
 	//Mutator Functions
 	void addBoid(Boid b);
 	void flocking();
-	void swarming();
+	void swarming(sf::Vector2f);
 
 };
 

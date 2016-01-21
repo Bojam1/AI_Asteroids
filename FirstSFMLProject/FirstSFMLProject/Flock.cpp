@@ -33,10 +33,10 @@ void Flock::flocking()
 }
 // Runs the swarm function for every boid in the flock checking against the flock
 // itself. Which in turn applies all the rules to the flock.
-void Flock::swarming()
+void Flock::swarming(sf::Vector2f playerPos)
 {
 	for (int i = 0; i < flock.size(); i++)
 	{
-		flock[i].swarm(flock);
+		flock[i].swarm(flock, playerPos);
 	}
 }
