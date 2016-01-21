@@ -28,5 +28,9 @@ public:
 	sf::View getView();
 	void setView(sf::View v);
 	void setViewPosition(sf::Vector2f pos);
+
+	int window_height;
+	int window_width;
+	sf::VideoMode desktop;
 };
 #endif
