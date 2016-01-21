@@ -271,7 +271,7 @@ tuple<bool, Pvector> Boid::CalculateLJP(Boid b, sf::Vector2f playerPos)
 	Pvector p(playerPos.x, playerPos.y);
 
 	float neighbordist = 500;
-	float neighbordistPlayer = 500;
+	float neighbordistPlayer = 300;
 	float A = 100; //force of attraction
 	float B = 5000; //force of separation
 	float N = 1; //linear atenuation
@@ -280,7 +280,7 @@ tuple<bool, Pvector> Boid::CalculateLJP(Boid b, sf::Vector2f playerPos)
 	float dist = location.distance(b.location);
 	float dist2 = location.distance(p);
 
-	/*		Lenard-Jones Potential function
+	/*	Lenard-Jones Potential function
 	Vector R = me.position - you.position
 	Real D = R.magnitude()
 	Real U = -A / pow(D, N) + B / pow(D, M)
