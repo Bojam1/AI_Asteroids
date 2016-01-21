@@ -22,6 +22,10 @@ void Camera::Init(int w, int h)
 {
 	camView = sf::View(sf::FloatRect(w / 2, h / 2, w, h));
 	camView.setViewport(sf::FloatRect(0, 0, 1, 1));
+
+	desktop = sf::VideoMode::getDesktopMode();
+	window_height = desktop.height;
+	window_width = desktop.width;
 }
 void Camera::setCentre(sf::Vector2f pos)
 {
@@ -39,17 +43,17 @@ void Camera::setViewPosition(sf::Vector2f pos)
 {
 	camView.setCenter(pos);
 
-	if (pos.x >= 400 && pos.x <= 2000)
+	if (pos.x >= window_width / 2 && pos.x <= 1680)
 		camView.setCenter(pos.x, camView.getCenter().y);
-	else if (pos.x < 400)
-		camView.setCenter(400, camView.getCenter().y);
-	else if (pos.x > 2000)
-		camView.setCenter(2000, camView.getCenter().y);
+	else if (pos.x < window_width / 2)
+		camView.setCenter(window_width / 2, camView.getCenter().y);
+	else if (pos.x > 1680)
+		camView.setCenter(1680, camView.getCenter().y);
 
-	if (pos.y >= 300 && pos.y <= 1500)
+	if (pos.y >= window_height / 2 && pos.y <= 1350)
 		camView.setCenter(camView.getCenter().x, pos.y);
-	else if (pos.y < 300)
-		camView.setCenter(camView.getCenter().x, 300);
-	else if (pos.y > 1500)
-		camView.setCenter(camView.getCenter().x, 1500);
+	else if (pos.y < window_height / 2)
+		camView.setCenter(camView.getCenter().x, window_height / 2);
+	else if (pos.y > 1350)
+		camView.setCenter(camView.getCenter().x, 1350);
 }

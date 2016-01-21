@@ -40,7 +40,7 @@ public:
 		acceleration = Pvector(0, 0);
 		velocity = Pvector(rand()%3-2, rand()%3-2); // Allows for range of -2 -> 2
 		location = Pvector(x, y);
-		maxSpeed = 3.5;
+		maxSpeed = 1.5;
 		maxForce = 0.5;
 	}
 	Boid(float x, float y, bool predCheck) 

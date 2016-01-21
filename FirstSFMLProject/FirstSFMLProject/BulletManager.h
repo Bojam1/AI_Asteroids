@@ -26,6 +26,7 @@ public:
 	void BulletManager::Update(float);
 	void BulletManager::AddBullet(sf::Vector2f, float);
 	list<Bullet*>& BulletManager::GetListOfBullets();
+	bool BulletManager::IsColliding(sf::Vector2f targetPosition, int targetRadius);
 
 private:
 	BulletManager()

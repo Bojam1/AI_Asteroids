@@ -19,6 +19,7 @@ public:
 	void Move(float time);
 	float toRadians(float degrees);
 	bool CheckBullets();
+	bool IsColliding(sf::Vector2f targetPosition, int targetRadius);
 
 private:
 	sf::Sprite bulletSprite;
@@ -26,5 +27,6 @@ private:
 	sf::Vector2f m_position;
 	float m_speed;
 	float m_rotation;
+	float m_radius;
 };
 #endif 

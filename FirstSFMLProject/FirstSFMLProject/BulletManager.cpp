@@ -77,3 +77,24 @@ list<Bullet*>& BulletManager::GetListOfBullets()
 {
 	return bullets;
 }
+
+bool BulletManager::IsColliding(sf::Vector2f targetPosition, int targetRadius)
+{
+	bool collision = false;
+	list<Bullet*>::iterator it = bullets.begin();
+	for (it = bullets.begin(); it != bullets.end();)
+	{
+		if ((*it)->IsColliding(targetPosition, targetRadius))
+		{
+			it = bullets.erase(it);
+			collision = true;
+			break;
+		}
+		if (!collision)
+		{
+			++it;
+		}
+	}
+	return collision;
+
+}

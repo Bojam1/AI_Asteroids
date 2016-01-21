@@ -21,6 +21,7 @@ Bullet::Bullet(sf::Vector2f playerPos, sf::Texture* bulletImage, float rotation)
 	m_position = playerPos;
 	bulletSprite.setOrigin(bulletSprite.getGlobalBounds().width / 2, bulletSprite.getGlobalBounds().height / 2);
 	bulletSprite.setScale(0.3, 0.3);
+	m_radius = bulletSprite.getGlobalBounds().width / 2;
 }
 
 //! Draw the bullet holes
@@ -69,4 +70,18 @@ bool Bullet::CheckBullets()
 
 	return false;
 
+}
+
+bool Bullet::IsColliding(sf::Vector2f targetPosition, int targetRadius)
+{
+	float distance = sqrt((targetPosition.x - m_position.x)*(targetPosition.x - m_position.x) + (targetPosition.y - m_position.y)*(targetPosition.y - m_position.y));
+	if (distance < m_radius + targetRadius)		//collision occurs
+	{
+		std::cout << "COLLISION" << std::endl;
+		return true;	//return true
+	}
+	else
+	{
+		return false;	//return false
+	}
 }

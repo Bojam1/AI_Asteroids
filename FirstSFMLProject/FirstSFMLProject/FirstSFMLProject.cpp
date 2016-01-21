@@ -24,7 +24,7 @@ using namespace std;
 
 int main()
 {
-	float boidsSize = 3;
+	float boidsSize = 8;
 	string action = "flock";
 
 	Player p1;
@@ -49,9 +49,12 @@ int main()
 	//}
 
 	// Create the main window
-	const int window_width = 800;
-	const int window_height = 600;
-	sf::RenderWindow window(sf::VideoMode(window_width, window_height, 32), "SFML First Program");
+	sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
+	const int window_height = desktop.height;
+	const int window_width = desktop.width;
+	//const int window_width = 800;
+	//const int window_height = 600;
+	sf::RenderWindow window(sf::VideoMode(window_width, window_height, 32), "AI Project", sf::Style::None);
 	Camera::GetInstance()->Init(window_width, window_height);
 	MiniMap::GetInstance()->Init(window_width, window_height);
 	//load a font
@@ -65,8 +68,8 @@ int main()
 	for (int i = 0; i < 50; i++) //Number of boids is hardcoded for testing pusposes.
 	{
 		//Boid b(rand() % window_width, rand() % window_height); //Starts the boid with a random position in the window.
-		Boid b((window_width * 3) / 2, (window_height * 3) / 2); //Starts all boids in the center of the screen
-		sf::CircleShape shape(10, 3); //Shape with a radius of 10 and 3 points (Making it a triangle)
+		Boid b((window_width * 3) / 2, (window_height * 3) / 2 -150); //Starts all boids in the center of the screen
+		sf::CircleShape shape(boidsSize, 3); //Shape with a radius of 10 and 3 points (Making it a triangle)
 
 		//Changing the Visual Properties of the shape
 		//shape.setPosition(b.location.x, b.location.y); //Sets position of shape to random location that boid was set to.
@@ -76,11 +79,11 @@ int main()
 		shape.setOutlineColor(sf::Color::White);
 		shape.setOutlineThickness(1);
 		shape.setRadius(boidsSize);
-		shape.setScale(2, 2);
 
 		//Adding the boid to the flock and adding the shapes to the vector<sf::CircleShape>
 		flock.addBoid(b);
 		shapes.push_back(shape);
+		
 	}
 
 
@@ -156,6 +159,11 @@ int main()
 			float theta;
 			theta = flock.getBoid(i).angle(flock.getBoid(i).velocity);
 			shapes[i].setRotation(theta);
+
+			if (BulletManager::GetInstance()->IsColliding(shapes[i].getPosition(), shapes[i].getRadius()))
+			{
+				shapes[i].setOutlineColor(sf::Color::Red);
+			}
 		}
 
 		//MiniMap>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

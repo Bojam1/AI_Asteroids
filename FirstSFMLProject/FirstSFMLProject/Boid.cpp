@@ -102,7 +102,7 @@ Pvector Boid::Alignment(vector<Boid> Boids)
 	// algorithm
 	//if (predator == true)
 	//	return Pvector(0,0);
-	float neighbordist = 50;
+	float neighbordist = 30;
 
 	Pvector sum(0, 0);	
 	int count = 0;
@@ -141,7 +141,7 @@ Pvector Boid::Cohesion(vector<Boid> Boids)
 	//if (predator == true)
 	//	return Pvector(0,0);
 
-	float neighbordist = 50;
+	float neighbordist = 30;
 
 	Pvector sum(0, 0);	
 	int count = 0;
