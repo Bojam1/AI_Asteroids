@@ -12,6 +12,9 @@ class Menu
 private:
 	sf::Texture texture;
 	sf::Sprite sprite;
+	sf::Vector2u size1;
+	float ratiox;
+	float ratioy;
 public:
 
 	Menu(int w, int h);

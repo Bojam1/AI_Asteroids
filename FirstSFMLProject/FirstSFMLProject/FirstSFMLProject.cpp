@@ -6,7 +6,6 @@
 //#include "Enemy.h"
 #include "Camera.h"
 #include "Minimap.h"
-<<<<<<< HEAD
 #include "Bullet.h"
 #include <iostream>
 #include <vector>
@@ -17,12 +16,11 @@
 #include "SFML/Window.hpp"
 #include "SFML/Graphics.hpp"
 #include <string>
-using namespace std;
-=======
 #include "StateController.h"
 #include "Menu.h"
 #include "Play.h"
->>>>>>> refs/remotes/origin/Jamies-Branch
+
+using namespace std;
 
 ////////////////////////////////////////////////////////////
 ///Entrypoint of application 
@@ -30,13 +28,12 @@ using namespace std;
 
 int main()
 {
-<<<<<<< HEAD
 	float boidsSize = 8;
 	string action = "flock";
 
-	Player p1;
-	Bullet b1;
-	sf::Texture m_BGTexture;
+	//Player p1;
+	//Bullet b1;
+	/*sf::Texture m_BGTexture;
 	m_BGTexture.loadFromFile("bg.jpg");
 	sf::Sprite m_BGSprite;
 	sf::Sprite m_BGMapSprite;
@@ -44,7 +41,7 @@ int main()
 	m_BGSprite.setPosition(0, 0);
 
 	m_BGMapSprite.setTexture(m_BGTexture);
-	m_BGMapSprite.setColor(sf::Color(255, 255, 255, 100));
+	m_BGMapSprite.setColor(sf::Color(255, 255, 255, 100));*/
 	//Enemy enemies[3];
 	//
 	//enemies[1] = Enemy(sf::Vector2f(100, 100), 100);
@@ -57,8 +54,10 @@ int main()
 
 	// Create the main window
 	sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
-	const int window_height = desktop.height;
-	const int window_width = desktop.width;
+	//const int window_height = desktop.height;
+	//const int window_width = desktop.width;
+	const int window_height = 600;
+	const int window_width = 800;
 	//const int window_width = 800;
 	//const int window_height = 600;
 	sf::RenderWindow window(sf::VideoMode(window_width, window_height, 32), "AI Project", sf::Style::None);
@@ -67,59 +66,38 @@ int main()
 	//load a font
 	sf::Font font;
 	font.loadFromFile("C:\\Windows\\Fonts\\GARA.TTF");
-=======
-	int SCREEN_WIDTH = 800, SCREEN_HEIGHT = 600;
+	//int SCREEN_WIDTH = 800, SCREEN_HEIGHT = 600;
 	Menu* menu;
 	Play* play;
 
-	Player p1;
-	Enemy enemies[3];
-	
-
-	enemies[1] = Enemy(sf::Vector2f(100, 100), 100);
-	enemies[2] = Enemy(sf::Vector2f(10, 10), 50);
->>>>>>> refs/remotes/origin/Jamies-Branch
-
 	//Create flock, vector of shapes, and initialize boids
-	Flock flock;
-	vector<sf::CircleShape> shapes;
+	//Flock flock;
+	//vector<sf::CircleShape> shapes;
 
-	for (int i = 0; i < 25; i++) //Number of boids is hardcoded for testing pusposes.
-	{
-		//Boid b(rand() % window_width, rand() % window_height); //Starts the boid with a random position in the window.
-		Boid b((window_width * 3) / 2, (window_height * 3) / 2 -150); //Starts all boids in the center of the screen
-		sf::CircleShape shape(boidsSize, 3); //Shape with a radius of 10 and 3 points (Making it a triangle)
+	//for (int i = 0; i < 25; i++) //Number of boids is hardcoded for testing pusposes.
+	//{
+	//	//Boid b(rand() % window_width, rand() % window_height); //Starts the boid with a random position in the window.
+	//	Boid b((window_width * 3) / 2, (window_height * 3) / 2 -150); //Starts all boids in the center of the screen
+	//	sf::CircleShape shape(boidsSize, 3); //Shape with a radius of 10 and 3 points (Making it a triangle)
 
-		//Changing the Visual Properties of the shape
-		//shape.setPosition(b.location.x, b.location.y); //Sets position of shape to random location that boid was set to.
-		shape.setPosition(window_width, window_height); //Testing purposes, starts all shapes in the center of screen.
-		shape.setOutlineColor(sf::Color(0, 255, 0));
-		shape.setFillColor(sf::Color::Green);
-		shape.setOutlineColor(sf::Color::White);
-		shape.setOutlineThickness(1);
-		shape.setRadius(boidsSize);
+	//	//Changing the Visual Properties of the shape
+	//	//shape.setPosition(b.location.x, b.location.y); //Sets position of shape to random location that boid was set to.
+	//	shape.setPosition(window_width, window_height); //Testing purposes, starts all shapes in the center of screen.
+	//	shape.setOutlineColor(sf::Color(0, 255, 0));
+	//	shape.setFillColor(sf::Color::Green);
+	//	shape.setOutlineColor(sf::Color::White);
+	//	shape.setOutlineThickness(1);
+	//	shape.setRadius(boidsSize);
 
-		//Adding the boid to the flock and adding the shapes to the vector<sf::CircleShape>
-		flock.addBoid(b);
-		shapes.push_back(shape);
-		
-	}
+	//	//Adding the boid to the flock and adding the shapes to the vector<sf::CircleShape>
+	//	flock.addBoid(b);
+	//	shapes.push_back(shape);
+	//	
+	//}
 
-<<<<<<< HEAD
-=======
-	// Create the main window 
-	sf::RenderWindow window(sf::VideoMode(800, 600, 32), "SFML First Program");
-	/*Initialsie the game modes*/
+	menu = new Menu(window_width, window_height);
+	play = new Play(window_width, window_height);
 
-	menu = new Menu(SCREEN_WIDTH, SCREEN_HEIGHT);
-	play = new Play(SCREEN_WIDTH, SCREEN_HEIGHT);
-
-	Camera::GetInstance()->Init(800, 600);
-	MiniMap::GetInstance()->Init(800, 600);
-	//load a font
-	sf::Font font;
-	font.loadFromFile("C:\\Windows\\Fonts\\GARA.TTF");
->>>>>>> refs/remotes/origin/Jamies-Branch
 
 	////create a circle
 	//sf::CircleShape circle(50);
@@ -141,66 +119,64 @@ int main()
 				window.close();
 
 			// Escape key : exit 
-			if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::Escape))
-				window.close();
+			//if ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::Escape))
+			//	window.close();
 
-			if ((Event.type == sf::Event::KeyPressed && Event.key.code == sf::Keyboard::S))
-			if (action == "flock")
-				action = "swarm";
-			else
-				action = "flock";
+			//if ((Event.type == sf::Event::KeyPressed && Event.key.code == sf::Keyboard::S))
+			//if (action == "flock")
+			//	action = "swarm";
+			//else
+			//	action = "flock";
 
-			if ((Event.type == sf::Event::KeyPressed && Event.key.code == sf::Keyboard::Space))
-			{
-				p1.Shoot();
-			}
+			//if ((Event.type == sf::Event::KeyPressed && Event.key.code == sf::Keyboard::Space))
+			//{
+			//	//p1.Shoot();
+			//}
 		}
 
 		time = m_clock.getElapsedTime();
 		float t = time.asSeconds();
 		m_clock.restart();
 
-<<<<<<< HEAD
-		p1.Update(t);
+		//p1.Update(t);
 
-		BulletManager::GetInstance()->Update(t);
+		//BulletManager::GetInstance()->Update(t);
 
 
-		window.clear(); //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>CLEAR WINDOW
+		//window.clear(); //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>CLEAR WINDOW
 
 		//prepare frame
-		window.setView(Camera::GetInstance()->getView());
+		//window.setView(Camera::GetInstance()->getView());
 		//draw frame items
-		window.draw(m_BGSprite);
+		//window.draw(m_BGSprite);
 
-		BulletManager::GetInstance()->Draw(window);
-		p1.Draw(window);
+		//BulletManager::GetInstance()->Draw(window);
+		//p1.Draw(window);
 
 		
 	
 		//Draws all of the Boids out, and applies functions that are needed to update.
-		for (int i = 0; i < shapes.size(); i++)
-		{
-			window.draw(shapes[i]);
+		//for (int i = 0; i < shapes.size(); i++)
+		//{
+		//	window.draw(shapes[i]);
 
-			//Cout's removed due to slowdown and only needed for testing purposes
-			//cout << "Boid "<< i <<" Coordinates: (" << shapes[i].getPosition().x << ", " << shapes[i].getPosition().y << ")" << endl;
-			//cout << "Boid Code " << i << " Location: (" << flock.getBoid(i).location.x << ", " << flock.getBoid(i).location.y << ")" << endl;
+		//	//Cout's removed due to slowdown and only needed for testing purposes
+		//	//cout << "Boid "<< i <<" Coordinates: (" << shapes[i].getPosition().x << ", " << shapes[i].getPosition().y << ")" << endl;
+		//	//cout << "Boid Code " << i << " Location: (" << flock.getBoid(i).location.x << ", " << flock.getBoid(i).location.y << ")" << endl;
 
-			//Matches up the location of the shape to the boid
-			shapes[i].setPosition(flock.getBoid(i).location.x, flock.getBoid(i).location.y);
+		//	//Matches up the location of the shape to the boid
+		//	shapes[i].setPosition(flock.getBoid(i).location.x, flock.getBoid(i).location.y);
 
-			// Calculates the angle where the velocity is pointing so that the triangle turns towards it.
-			float theta;
-			theta = flock.getBoid(i).angle(flock.getBoid(i).velocity);
-			shapes[i].setRotation(theta);
+		//	// Calculates the angle where the velocity is pointing so that the triangle turns towards it.
+		//	float theta;
+		//	theta = flock.getBoid(i).angle(flock.getBoid(i).velocity);
+		//	shapes[i].setRotation(theta);
 
-			if (BulletManager::GetInstance()->IsColliding(shapes[i].getPosition(), shapes[i].getRadius()))
-			{
-				shapes[i].setOutlineColor(sf::Color::Red);
-			}
-		}
-=======
+		//	if (BulletManager::GetInstance()->IsColliding(shapes[i].getPosition(), shapes[i].getRadius()))
+		//	{
+		//		shapes[i].setOutlineColor(sf::Color::Red);
+		//	}
+		//}
 		//updates
 		switch (StateController::GetInstance()->getState())
 		{
@@ -208,7 +184,7 @@ int main()
 			menu->Update(t);
 			break;
 		case StateController::PLAY:
-			play->Update(t, time);
+			play->Update(t, window);
 			break;
 		case StateController::CREDITS:
 			break;
@@ -241,8 +217,6 @@ int main()
 		case StateController::SCORESCREEN:
 			break;
 		}//end switch
-	
->>>>>>> refs/remotes/origin/Jamies-Branch
 
 		//MiniMap>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 		//window.setView(MiniMap::GetInstance()->getView());
@@ -253,24 +227,24 @@ int main()
 		//}
 		//p1.Draw(window);
 
-		window.setView(MiniMap::GetInstance()->getStaticView());
+		//window.setView(MiniMap::GetInstance()->getStaticView());
 		//p1.Draw(window);
-		window.draw(m_BGMapSprite);
+		/*window.draw(m_BGMapSprite);
 		BulletManager::GetInstance()->Draw(window);
 		for (int i = 0; i < shapes.size(); i++)
 		{
 			window.draw(shapes[i]);
-		}
+		}*/
 		//p1.Draw(window);
-		p1.DrawOnMap(window);
+		//p1.DrawOnMap(window);
 
 		//MiniMap>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 		//Applies the three rules to each boid in the flock and changes them accordingly.
-		if (action == "flock")
+		/*if (action == "flock")
 			flock.flocking();
 		else
-			flock.swarming(p1.GetPosition());
+			flock.swarming(p1.GetPosition());*/
 
 		// Finally, display rendered frame on screen 
 		window.display(); //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>DRAW WINDOW

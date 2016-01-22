@@ -9,7 +9,14 @@ Menu::Menu(int SCREEN_WIDTH, int SCREEN_HEIGHT)
 	}
 	sprite.setTexture(texture);
 	sprite.setPosition(sf::Vector2f(0, 0));
-	sprite.setScale(sf::Vector2f(1, 1));
+	size1 = texture.getSize();
+	ratiox = (float)SCREEN_WIDTH / (float)size1.x;
+	ratioy = (float)SCREEN_HEIGHT / (int)size1.y;
+	sprite.setScale(sf::Vector2f(ratiox, ratioy));
+
+	
+
+
 
 }
 

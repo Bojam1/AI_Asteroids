@@ -18,15 +18,12 @@ public:
 	void Draw(sf::RenderWindow& window);
 	void DrawOnMap(sf::RenderWindow& window);
 	sf::Vector2f GetPosition();
-<<<<<<< HEAD
 	float GetRotation();
 	sf::Vector2f GetDirection();
 	float GetSpeed();
 	void Shoot();
-=======
 	sf::Sprite GetSprite();
 	void PowerUpCollected();
->>>>>>> refs/remotes/origin/Jamies-Branch
 	//Variables
 
 protected:
@@ -39,7 +36,7 @@ protected:
 	static bool instanceFlag;
 	static Player* instance;
 	//Variables
-	bool powerUpCollected;
+	bool powerUpCollected = false;
 	int m_width;
 	int m_height;
 	int count;

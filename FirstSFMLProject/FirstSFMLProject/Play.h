@@ -11,14 +11,21 @@
 #include "AsteroidManager.h"
 #include "PowerUpManager.h"
 #include "PowerUp.h"
+#include "Bullet.h"
+#include "BulletManager.h"
+#include "Flock.h"
+#include "Boid.h"
 
 
 class Play{
 private:
 	Player* player;
 	Asteroids* asteroid;
-	sf::Texture backgroundTexture;
-	sf::Sprite background;
+	Enemy enemies[3];
+	sf::Sprite m_BGSprite;
+	sf::Sprite m_BGMapSprite;
+	sf::Texture m_BGTexture;
+	
 
 public:
 	Play(int w, int h);
@@ -26,9 +33,9 @@ public:
 		delete player;
 	}
 	void Init();
-	void Update(float time, sf::Time animationTime);
+	void Update(float time, sf::RenderWindow& window);
 	void Draw(sf::RenderWindow& window);
-	void ResetAll();
+	
 
 };
 #endif
