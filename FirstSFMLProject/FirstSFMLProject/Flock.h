@@ -19,6 +19,7 @@ private:
 public:
 	//Public Variables
 	vector<Boid> flock;
+	vector<Boid> predatorFlock;
 
 	//Constructors
 	Flock() {}
@@ -34,9 +35,12 @@ errors.
 	//Accessor functions
 	int getSize();
 	Boid getBoid(int i);
+	Boid getPredBoid(int i);
 	//Mutator Functions
 	void addBoid(Boid b);
+	void addPredatorBoid(Boid pB);
 	void flocking();
+	void PredFlocking();
 	void swarming(sf::Vector2f);
 
 };

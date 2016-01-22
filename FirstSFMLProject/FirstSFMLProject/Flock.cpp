@@ -17,9 +17,19 @@ Boid Flock::getBoid(int i)
 	return flock[i];
 }
 
+Boid Flock::getPredBoid(int i)
+{
+	return predatorFlock[i];
+}
+
 void Flock::addBoid(Boid b)
 {
 	flock.push_back(b);
+}
+
+void Flock::addPredatorBoid(Boid pB)
+{
+	predatorFlock.push_back(pB);
 }
 
 // Runs the run function for every boid in the flock checking against the flock
@@ -29,6 +39,13 @@ void Flock::flocking()
 	for (int i = 0; i < flock.size(); i++)
 	{
 		flock[i].run(flock);
+	}
+}
+void Flock::PredFlocking()
+{
+	for (int i = 0; i < predatorFlock.size(); i++)
+	{
+		predatorFlock[i].run(predatorFlock);
 	}
 }
 // Runs the swarm function for every boid in the flock checking against the flock
