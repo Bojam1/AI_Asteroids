@@ -13,6 +13,7 @@
 #include "Pvector.h"
 #include "Flock.h"
 #include "BulletManager.h"
+#include "PredatorManager.h"
 #include "SFML/Window.hpp"
 #include "SFML/Graphics.hpp"
 #include <string>
@@ -73,7 +74,7 @@ int main()
 
 		//Changing the Visual Properties of the shape
 		//shape.setPosition(b.location.x, b.location.y); //Sets position of shape to random location that boid was set to.
-		shape.setPosition(window_width, window_height); //Testing purposes, starts all shapes in the center of screen.
+		//shape.setPosition(window_width, window_height); //Testing purposes, starts all shapes in the center of screen.
 		shape.setFillColor(sf::Color::Green);
 		shape.setOutlineColor(sf::Color::White);
 		shape.setOutlineThickness(1);
@@ -84,7 +85,14 @@ int main()
 		shapes.push_back(shape);
 		
 	}
+	//predator boids
 
+	for (int i = 0; i < 25; i++) //Number of boids is hardcoded for testing pusposes.
+	{
+		Boid p((800 * 3) / 2, (600 * 3) / 2 + 150);
+		flock.addPredatorBoid(p);
+		PredatorManager::GetInstance()->AddPredator(flock.getPredBoid(i).location, 0);
+	}
 
 	////create a circle
 	//sf::CircleShape circle(50);
@@ -126,7 +134,14 @@ int main()
 		m_clock.restart();
 
 		p1.Update(t);
+		for (int i = 0; i < 25; i++) //Number of boids is hardcoded for testing pusposes.
+		{
+			float theta;
+			theta = flock.getBoid(i).angle(flock.getBoid(i).velocity);
 
+			PredatorManager::GetInstance()->Update(t, flock.getPredBoid(i).location, theta);
+			
+		}
 		BulletManager::GetInstance()->Update(t);
 
 
@@ -140,7 +155,7 @@ int main()
 		BulletManager::GetInstance()->Draw(window);
 		p1.Draw(window);
 
-		
+		PredatorManager::GetInstance()->Draw(window);
 	
 		//Draws all of the Boids out, and applies functions that are needed to update.
 		for (int i = 0; i < shapes.size(); i++)
@@ -182,12 +197,15 @@ int main()
 		{
 			window.draw(shapes[i]);
 		}
+		PredatorManager::GetInstance()->Draw(window);
 		//p1.Draw(window);
 		p1.DrawOnMap(window);
 
 		//MiniMap>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 		//Applies the three rules to each boid in the flock and changes them accordingly.
+		flock.PredFlocking();
+
 		if (action == "flock")
 			flock.flocking();
 		else
