@@ -23,9 +23,11 @@ public:
 	static BulletManager* GetInstance();
 
 	void BulletManager::Draw(sf::RenderWindow& window);
-	void BulletManager::Update(float);
+	void BulletManager::Update(float, sf::Vector2f target);
 	void BulletManager::AddBullet(sf::Vector2f, float);
+	void BulletManager::AddPredatorBullet(sf::Vector2f, float, sf::Vector2f);
 	list<Bullet*>& BulletManager::GetListOfBullets();
+	list<Bullet*>& BulletManager::GetListOfPredBullets();
 	bool BulletManager::IsColliding(sf::Vector2f targetPosition, int targetRadius);
 
 private:
@@ -38,6 +40,7 @@ private:
 	static BulletManager* instance;
 	sf::Texture bulletTexture;
 	list<Bullet*> bullets;
+	list<Bullet*> predBullets;
 
 };
 

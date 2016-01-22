@@ -13,7 +13,7 @@ Asteroids::Asteroids(sf::Vector2f playerPos){
 	dir = Normalise(dir);
 	m_dir = dir;
 
-	m_position = sf::Vector2f((rand() % 800 + 1), rand() % 600 + 1);
+	m_position = sf::Vector2f((rand() % 1600 + 1), rand() % 1200 + 1);
 	
 	sprite.setPosition(m_position);
 	

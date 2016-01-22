@@ -15,12 +15,13 @@
 #include "BulletManager.h"
 #include "Flock.h"
 #include "Boid.h"
-
+#include "FactoryShip.h"
 
 class Play{
 private:
 	Player* player;
 	Asteroids* asteroid;
+	FactoryShip* factoryShip;
 	Enemy enemies[3];
 	sf::Sprite m_BGSprite;
 	sf::Sprite m_BGMapSprite;

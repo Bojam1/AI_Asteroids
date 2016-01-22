@@ -89,6 +89,8 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Factory.h" />
+    <ClInclude Include="FactoryManager.h" />
+    <ClInclude Include="FactoryShip.h" />
     <ClInclude Include="Flock.h" />
     <ClInclude Include="AsteroidManager.h" />
     <ClInclude Include="Asteroids.h" />
@@ -112,6 +114,8 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Factory.cpp" />
+    <ClCompile Include="FactoryManager.cpp" />
+    <ClCompile Include="FactoryShip.cpp" />
     <ClCompile Include="FirstSFMLProject.cpp" />
     <ClCompile Include="Flock.cpp" />
     <ClCompile Include="Menu.cpp" />

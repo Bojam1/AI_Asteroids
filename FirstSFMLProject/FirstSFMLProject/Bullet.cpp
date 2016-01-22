@@ -49,6 +49,20 @@ void Bullet::Move(float time)
 	//cout << "bullet pos: " << "(" << m_position.x << "," << m_position.y << ")" << endl;
 	bulletSprite.setPosition(m_position);
 }
+void Bullet::Seek(float time, sf::Vector2f target)
+{
+	float len = DistanceFrom(m_position, target);
+	if (len > 100)
+	{
+		m_position += m_direction * time * m_speed;
+		bulletSprite.setPosition(m_position);
+	}
+}
+float Bullet::DistanceFrom(sf::Vector2f pos, sf::Vector2f player)
+{
+	float len = sqrt((player.x - pos.x)*(player.x - pos.x) + (player.y - pos.y)*(player.y - pos.y));
+	return len;
+}
 
 float Bullet::toRadians(float degrees)
 {

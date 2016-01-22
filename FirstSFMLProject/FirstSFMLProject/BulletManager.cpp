@@ -43,6 +43,13 @@ void BulletManager::AddBullet(sf::Vector2f bulletPos, float rotation)
 	cout << "rotationBullet: " << bullets.size() << endl;
 }
 
+void BulletManager::AddPredatorBullet(sf::Vector2f bulletPos, float rotation, sf::Vector2f)
+{
+	Bullet* pb = new Bullet(bulletPos, &bulletTexture, rotation);
+	predBullets.push_back(pb);
+	cout << "rotationBullet: " << predBullets.size() << endl;
+}
+
 //! Draws the bullet holes
 /*!
 \When called, the Draw() method iterates through the list of bullets.
@@ -56,9 +63,13 @@ void BulletManager::Draw(sf::RenderWindow& window)
 	{
 		b->Draw(window);
 	}
+	for (Bullet* pb : predBullets)
+	{
+		pb->Draw(window);
+	}
 }
 
-void BulletManager::Update(float t)
+void BulletManager::Update(float t , sf::Vector2f target)
 {
 	for (Bullet* b : bullets)
 	{
@@ -71,11 +82,26 @@ void BulletManager::Update(float t)
 		}
 		
 	}
+	for (Bullet* pb : predBullets)
+	{
+		pb->Seek(t, target);
+
+		if (pb->CheckBullets() == true)
+		{
+			predBullets.erase(std::remove(bullets.begin(), bullets.end(), pb), bullets.end()); //iterate from the start to the end of the list, find b and erase it
+			break;
+		}
+
+	}
 }
 
 list<Bullet*>& BulletManager::GetListOfBullets()
 {
 	return bullets;
+}
+list<Bullet*>& BulletManager::GetListOfPredBullets()
+{
+	return predBullets;
 }
 
 bool BulletManager::IsColliding(sf::Vector2f targetPosition, int targetRadius)

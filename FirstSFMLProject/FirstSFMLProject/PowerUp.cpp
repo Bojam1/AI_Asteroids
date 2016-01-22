@@ -9,7 +9,7 @@ PowerUp::PowerUp() {
 	sprite.setTexture(m_texture);
 	sprite.setOrigin(50, 50);
 
-	m_position = sf::Vector2f((rand() % 800 + 1), rand() % 600 + 1);
+	m_position = sf::Vector2f((rand() % 1600 + 1), rand() % 1200 + 1);
 
 	sprite.setPosition(m_position);
 

@@ -8,6 +8,7 @@ sf::CircleShape circle2(100);
 Flock flock;
 vector<sf::CircleShape> shapes;
 
+
 Play::Play(int SCREEN_WIDTH, int SCREEN_HEIGHT)
 {
 	//sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
@@ -16,20 +17,20 @@ Play::Play(int SCREEN_WIDTH, int SCREEN_HEIGHT)
 	//cout << SCREEN_WIDTH << endl;
 	float boidsSize = 8;
 	
-
-
+	factoryShip = new FactoryShip(sf::Vector2f(600, 500), 100);
+	factoryShip->Load();
 	player = new Player();
 	
-	//Enemy enemies[3];S
+	//Enemy enemies[3];
 	asteroid = new Asteroids(player->GetPosition());
+	
+	enemies[1] =  Enemy(sf::Vector2f(100, 100), 100);
+	enemies[2] =  Enemy(sf::Vector2f(10, 10), 50);
 
-	//enemies[1] = Enemy(sf::Vector2f(100, 100), 100);
-	//enemies[2] = Enemy(sf::Vector2f(10, 10), 50);
-
-	//for (int i = 0; i < 3; i++)
-	//{
-	//	enemies[i].Load();
-	//}
+	for (int i = 0; i < 3; i++)
+	{
+		enemies[i].Load();
+	}
 
 	m_BGTexture.loadFromFile("bg.jpg");
 	m_BGSprite.setTexture(m_BGTexture);
@@ -77,14 +78,15 @@ void Play::Update(float time,  sf::RenderWindow& window){
 
 	player->Update(time);
 
-	//for (int i = 0; i < 3; i++)
-	//{
-	//	enemies[i].Update(time, player->GetPosition());
-	//}
+	for (int i = 0; i < 3; i++)
+	{
+		enemies[i].Update(time, player->GetPosition());
+	}
 	asteroid->Update(time);
+	factoryShip->Update(time, player->GetPosition());
 	AsteroidManager::GetInstance()->Update(time, player);
 	PowerUpManager::GetInstance()->Update(time, player);
-	BulletManager::GetInstance()->Update(time);
+	BulletManager::GetInstance()->Update(time, player->GetPosition());
 
 	if (action == "flock")
 		flock.flocking();
@@ -115,14 +117,15 @@ void Play::Draw(sf::RenderWindow& window){
 	window.draw(m_BGSprite);
 
 	
-	//for (int i = 0; i < 3; i++)
-	//{
-	//	enemies[i].Draw(window);
-	//}
+	for (int i = 0; i < 3; i++)
+	{
+		enemies[i].Draw(window);
+	}
 	//asteroid->Draw(window);
 	AsteroidManager::GetInstance()->Draw(window);
 	PowerUpManager::GetInstance()->Draw(window);
 	BulletManager::GetInstance()->Draw(window);
+	factoryShip->Draw(window);
 	//Draws all of the Boids out, and applies functions that are needed to update.
 	for (int i = 0; i < shapes.size(); i++)
 	{
@@ -154,10 +157,11 @@ void Play::Draw(sf::RenderWindow& window){
 		{
 			window.draw(shapes[i]);
 		}
+		factoryShip->Draw(window);
 		BulletManager::GetInstance()->Draw(window);
 		AsteroidManager::GetInstance()->Draw(window);
 		player->DrawOnMap(window);
 
 		//reset view
-		//window.setView(Camera::GetInstance()->getView());
+		window.setView(Camera::GetInstance()->getView());
 }
